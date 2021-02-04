@@ -73,7 +73,7 @@
     const datePublishedInput = document.getElementById("datePublished");
 
     newBookForm.addEventListener("submit", function(e){
-
+      e.preventDefault();
       const title = titleInput.value;
       const isbn = isbnInput.value;
       const overdueFee = parseFloat(overdueFeeInput.value);
@@ -105,11 +105,11 @@
         return response.json();
       }).then(function(resData){
         console.log(resData);
-        // titleInput.value = "";
-        // isbnInput.value = "",
-        // overdueFeeInput.value = "0.00",
-        // publisherInput.value = "",
-        // datePublishedInput.value = "";
+        titleInput.value = "";
+        isbnInput.value = "",
+        overdueFeeInput.value = "0.00",
+        publisherInput.value = "",
+        datePublishedInput.value = "";
       }).catch (function(error){
         console.error(error);
       })
