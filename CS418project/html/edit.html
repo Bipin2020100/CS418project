@@ -79,7 +79,7 @@
         }
       })
       .then(book =>{
-        // bookIdInput.value = book.bookId;
+        bookIdInput.value = book.bookId;
         titleInput.value = book.title;
         isbnInput.value = book.isbn;
         overdueFeeInput.value = book.overdueFee;
@@ -92,8 +92,10 @@
 
     }
     displayBookData();
-    editBook.addEventListener("submit", function (e) {
+
+    editBook.addEventListener("submit", function(e) {
       e.preventDefault();
+      // const bookId = bookIdInput.value;
       // const bookId = bookIdInput.value;
       const title = titleInput.value;
       const isbn = isbnInput.value;
@@ -109,7 +111,7 @@
         "datePublished": datePublished
       };
 //to fetch book by its id
-      fetch("https://elibraryrestapi.herokuapp.com/elibrary/api/book/add"+bookId, {
+      fetch("https://elibraryrestapi.herokuapp.com/elibrary/api/book/update/"+bookId, {
         method: "put",
         body: JSON.stringify(editBookData),
         headers: {
@@ -121,10 +123,11 @@
         console.log(resData);
         titleInput.value = "";
         isbnInput.value = "",
-
-          overdueFeeInput.value = "0.00",
-          publisherInput.value = "",
-          datePublishedInput.value = "";
+        overdueFeeInput.value = "0.00",
+        publisherInput.value = "",
+        datePublishedInput.value = "";
+        txtTitle.focus();
+                alertMessageBox.style.display = "inline-block";
       }).catch(function (error) {
         console.error(error);
       })
